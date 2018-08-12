@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+	<!-- Реализуйте экранную клавиатуру. На ней должны быть кнопочки со всеми символами клавиатуры компьютера. Кликая мышкой по этим кнопочкам мы сможем вводить данные, например, при неработающей клавиатуре. Пусть эта экранная клавиатура будет привязана к какому-нибудь инпуту, то есть кликая по ней, мы будем вводить данные в этот инпут. -->
+	<div id="main-block">
+		<div id="input">
+			<textarea class="text" placeholder="Введите текст..." ></textarea>
+		</div>
+		<div id="keyboard">
+			<div class="button symb">
+				<span class="ru lang shift">Ё</span>
+				<span class="ru lang now">ё</span>
+				<span class="eng lang shift">~</span>
+				<span class="eng lang">`</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">!</span>
+				<span class="ru lang now">1</span>
+				<span class="eng lang shift">!</span>
+				<span class="eng lang">1</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">"</span>
+				<span class="ru lang now">2</span>
+				<span class="eng lang shift">@</span>
+				<span class="eng lang">2</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">№</span>
+				<span class="ru lang now">3</span>
+				<span class="eng lang shift">#</span>
+				<span class="eng lang">3</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">;</span>
+				<span class="ru lang now">4</span>
+				<span class="eng lang shift">$</span>
+				<span class="eng lang">4</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">%</span>
+				<span class="ru lang now">5</span>
+				<span class="eng lang shift">%</span>
+				<span class="eng lang">5</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">:</span>
+				<span class="ru lang now">6</span>
+				<span class="eng lang shift">^</span>
+				<span class="eng lang">6</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">?</span>
+				<span class="ru lang now">7</span>
+				<span class="eng lang shift">&</span>
+				<span class="eng lang">7</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">*</span>
+				<span class="ru lang now">8</span>
+				<span class="eng lang shift">*</span>
+				<span class="eng lang">8</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">(</span>
+				<span class="ru lang now">9</span>
+				<span class="eng lang shift">(</span>
+				<span class="eng lang">9</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">)</span>
+				<span class="ru lang now">0</span>
+				<span class="eng lang shift">)</span>
+				<span class="eng lang">0</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">&macr;</span>
+				<span class="ru lang now">-</span>
+				<span class="eng lang shift">&macr;</span>
+				<span class="eng lang">-</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">+</span>
+				<span class="ru lang now">=</span>
+				<span class="eng lang shift">+</span>
+				<span class="eng lang">=</span>
+			</div>
+			<div class="button backspace non-symb">
+				<span>Backspace</span>
+			</div>
+			<div class="button tab non-symb">
+				<span>Tab</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Й</span>
+				<span class="ru lang now">й</span>
+				<span class="eng lang shift">Q</span>
+				<span class="eng lang">q</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ц</span>
+				<span class="ru lang now">ц</span>
+				<span class="eng lang shift">W</span>
+				<span class="eng lang">w</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">У</span>
+				<span class="ru lang now">у</span>
+				<span class="eng lang shift">E</span>
+				<span class="eng lang">e</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">К</span>
+				<span class="ru lang now">к</span>
+				<span class="eng lang shift">R</span>
+				<span class="eng lang">r</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Е</span>
+				<span class="ru lang now">е</span>
+				<span class="eng lang shift">T</span>
+				<span class="eng lang">t</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Н</span>
+				<span class="ru lang now">н</span>
+				<span class="eng lang shift">Y</span>
+				<span class="eng lang">y</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Г</span>
+				<span class="ru lang now">г</span>
+				<span class="eng lang shift">U</span>
+				<span class="eng lang">u</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ш</span>
+				<span class="ru lang now">ш</span>
+				<span class="eng lang shift">I</span>
+				<span class="eng lang">i</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Щ</span>
+				<span class="ru lang now">щ</span>
+				<span class="eng lang shift">O</span>
+				<span class="eng lang">o</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">З</span>
+				<span class="ru lang now">з</span>
+				<span class="eng lang shift">P</span>
+				<span class="eng lang">p</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Х</span>
+				<span class="ru lang now">х</span>
+				<span class="eng lang shift">{</span>
+				<span class="eng lang">[</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ъ</span>
+				<span class="ru lang now">ъ</span>
+				<span class="eng lang shift">}</span>
+				<span class="eng lang">]</span>
+			</div>
+			<div class="button slash symb">
+				<span class="ru lang shift">/</span>
+				<span class="ru lang now">\</span>
+				<span class="eng lang shift">|</span>
+				<span class="eng lang">\</span>
+			</div>
+			<div class="button caps non-symb">
+				<span>caps lock</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ф</span>
+				<span class="ru lang now">ф</span>
+				<span class="eng lang shift">A</span>
+				<span class="eng lang">a</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ы</span>
+				<span class="ru lang now">ы</span>
+				<span class="eng lang shift">S</span>
+				<span class="eng lang">s</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">В</span>
+				<span class="ru lang now">в</span>
+				<span class="eng lang shift">D</span>
+				<span class="eng lang">d</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">А</span>
+				<span class="ru lang now">а</span>
+				<span class="eng lang shift">F</span>
+				<span class="eng lang">f</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">П</span>
+				<span class="ru lang now">п</span>
+				<span class="eng lang shift">G</span>
+				<span class="eng lang">g</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Р</span>
+				<span class="ru lang now">р</span>
+				<span class="eng lang shift">H</span>
+				<span class="eng lang">h</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">О</span>
+				<span class="ru lang now">о</span>
+				<span class="eng lang shift">J</span>
+				<span class="eng lang">j</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Л</span>
+				<span class="ru lang now">л</span>
+				<span class="eng lang shift">K</span>
+				<span class="eng lang">k</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Д</span>
+				<span class="ru lang now">д</span>
+				<span class="eng lang shift">L</span>
+				<span class="eng lang">l</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ж</span>
+				<span class="ru lang now">ж</span>
+				<span class="eng lang shift">:</span>
+				<span class="eng lang">;</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Э</span>
+				<span class="ru lang now">э</span>
+				<span class="eng lang shift">"</span>
+				<span class="eng lang">'</span>
+			</div>
+			<div class="button enter non-symb">
+				<span>enter</span>
+			</div>
+			<div class="button shift-r caps non-symb">
+				<span>shift</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Я</span>
+				<span class="ru lang now">я</span>
+				<span class="eng lang shift">Z</span>
+				<span class="eng lang">z</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ч</span>
+				<span class="ru lang now">ч</span>
+				<span class="eng lang shift">X</span>
+				<span class="eng lang">x</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">С</span>
+				<span class="ru lang now">с</span>
+				<span class="eng lang shift">C</span>
+				<span class="eng lang">c</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">М</span>
+				<span class="ru lang now">м</span>
+				<span class="eng lang shift">V</span>
+				<span class="eng lang">v</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">И</span>
+				<span class="ru lang now">и</span>
+				<span class="eng lang shift">B</span>
+				<span class="eng lang">b</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Т</span>
+				<span class="ru lang now">т</span>
+				<span class="eng lang shift">N</span>
+				<span class="eng lang">n</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ь</span>
+				<span class="ru lang now">ь</span>
+				<span class="eng lang shift">M</span>
+				<span class="eng lang">m</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Б</span>
+				<span class="ru lang now">б</span>
+				<span class="eng lang shift"><</span>
+				<span class="eng lang">,</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">Ю</span>
+				<span class="ru lang now">ю</span>
+				<span class="eng lang shift">></span>
+				<span class="eng lang">.</span>
+			</div>
+			<div class="button symb">
+				<span class="ru lang shift">,</span>
+				<span class="ru lang now">.</span>
+				<span class="eng lang shift">?</span>
+				<span class="eng lang">/</span>
+			</div>
+			<div class="button shift-l non-symb">
+				<span>shift</span>
+			</div>
+			<div id="en" class="button backspace symb" style="color:red;">
+				<span class="ru lang shift">EN</span>
+				<span class="ru lang now">RU</span>
+				<span class="eng lang shift">RU</span>
+				<span class="eng lang">EN</span>
+			</div>
+			<div class="button shift-r non-symb">
+				<span>очистить все</span>
+			</div>
+			<div class="button space"></div>
+			<div class="button shift-r non-symb">
+				Выделить все
+			</div>
+			<div class="button audio"></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/keyb.js"></script>
+</body>
+</html>
+	

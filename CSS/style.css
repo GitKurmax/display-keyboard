@@ -1,0 +1,114 @@
+body {
+	background-color: lightblue;
+	user-select: none;
+}
+
+#input{
+	text-align: center;
+}
+
+#keyboard{
+	width:1021px;
+	margin: 0 auto;
+	border:2px solid gray;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.button{
+	position: relative;
+	border: 2px solid gray;
+	border-radius: 5px;
+	border-style: outset;
+	width: 55px;
+	height: 55px;
+	float: left;
+	margin: 5px;
+	background:linear-gradient(white, grey);
+	}
+
+.button-pushed {
+	border-style: inset;
+}
+
+.symb {
+	text-align: center;
+	font-size: 30px;
+	line-height: 55px;
+}
+
+span {
+	line-height: 100%;
+}
+
+span.eng {
+	display: none;
+}
+
+span.ru.shift{
+	position:absolute;
+	top: 2px; 
+	left: 2px;
+	font-size: 18px;
+	line-height: 100%;
+	color: grey;
+}
+
+span.shift-pushed{
+	position:absolute;
+	top: -15px; 
+	left: 2px;
+	font-size: 18px;
+	color: grey;
+}
+
+.text {
+	width:1035px;
+	height: 160px;
+	margin-bottom: 20px;
+	border:2px solid grey;
+	border-radius: 10px;
+	font-size: 18px;
+	resize: none;
+}
+
+.big{
+	width: 120px;
+}
+
+.backspace{
+	width: 110px;
+}
+
+.clear{
+	clear: both;
+}
+
+.tab{
+	width:90px;
+}
+
+.slash{
+	width: 75px;
+	font-size: 25px;
+}
+
+.caps{
+	width: 113px;
+}
+
+.enter{
+	width: 121px;
+}
+
+.shift-l{
+	width: 147px;
+}
+
+.shift-r{
+	width: 156px;
+}
+
+.space{
+	width: 474px;
+}
