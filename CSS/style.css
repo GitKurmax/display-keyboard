@@ -78,6 +78,9 @@ span.shift-pushed{
 
 .backspace{
 	width: 110px;
+	text-align: center;
+	line-height: 55px;
+	font-size: 40px;
 }
 
 .clear{
