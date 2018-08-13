@@ -36,11 +36,8 @@ function pushKeyStyle(parent){
 		}else if(event.target.closest('div').classList.contains('button')){
 			target = event.target.closest('div');
 		}
-		
-		if(event.target.classList.contains('button')){
-			event.target.classList.remove('button-pushed');
-		}else if(event.target.closest('div').classList.contains('button')){
-			event.target.closest('div').classList.remove('button-pushed');
+		if(!target.classList.contains('caps')){
+		target.classList.remove('button-pushed');
 		}
 	});
 }

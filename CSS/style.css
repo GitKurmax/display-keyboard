@@ -29,6 +29,7 @@ body {
 
 .button-pushed {
 	border-style: inset;
+	background: linear-gradient(white, lightgrey);
 }
 
 .symb {
@@ -127,6 +128,12 @@ span.shift-pushed{
 
 .space{
 	width: 474px;
+}
+
+.all {
+	text-align: center;
+	line-height: 55px;
+	font-size: 23px;
 }
 
 .audio {
