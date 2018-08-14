@@ -8,7 +8,7 @@ body {
 }
 
 #keyboard{
-	width:1021px;
+	width:1022px;
 	margin: 0 auto;
 	border:2px solid gray;
 	border-radius: 10px;
@@ -59,26 +59,14 @@ span.ru.shift{
 	color: grey;
 }
 
-span.shift-pushed{
-	position:absolute;
-	top: -15px; 
-	left: 2px;
-	font-size: 18px;
-	color: grey;
-}
-
 .text {
-	width:1035px;
+	width:1036px;
 	height: 160px;
 	margin-bottom: 20px;
 	border:2px solid grey;
 	border-radius: 10px;
 	font-size: 18px;
 	resize: none;
-}
-
-.big{
-	width: 120px;
 }
 
 .backspace{
@@ -118,19 +106,19 @@ span.shift-pushed{
 	font-size: 23px;
 }
 
-.shift-l{
-	width: 147px;
-}
-
-.shift-r{
-	width: 156px;
+.shift-button{
+	width: 152px;
+	text-align: center;
+	line-height: 55px;
+	font-size: 23px;
 }
 
 .space{
-	width: 474px;
+	width: 483px;
 }
 
 .all {
+	width: 152px;
 	text-align: center;
 	line-height: 55px;
 	font-size: 23px;
