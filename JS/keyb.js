@@ -7,8 +7,8 @@ capsLock (keyb,'caps','case','shift');
 capsLock (keyb,'shift-button','lang','shift');
 		
 function pushKeyStyle(parent){
+	var target;
 	parent.addEventListener('mousedown',function func() {
-		var target;
 		if(event.target.classList.contains('button')){
 			target = event.target;
 		}else if(event.target.closest('div').classList.contains('button')){
@@ -40,16 +40,9 @@ function pushKeyStyle(parent){
 				image[i].classList.toggle('eng');
 			}
 		}
-		});
+	});
 
 	parent.addEventListener('mouseup',function () {
-		var target;
-		if(event.target.classList.contains('button')){
-			target = event.target;
-		}else if(event.target.closest('div').classList.contains('button')){
-			target = event.target.closest('div');
-		}
-
 		if(!target.classList.contains('caps')&&!target.classList.contains('shift-button')){
 		target.classList.remove('button-pushed');
 		}
