@@ -95,8 +95,12 @@ function typeText(elem,button) {
 	var letter = button.getElementsByTagName('span');
 	if(button.classList.contains('clearAll')){
 		elem.value = '';
-	}else if(button.classList.contains('space')){
-		elem.value += ' ';
+	}else if(button.classList.contains('backspace')){
+		elem.value = elem.value.slice(0,-1);
+	}else if(button.classList.contains('tab')){
+		elem.value += '\t';
+	}else if(button.classList.contains('enter')){
+		elem.value += '\n';
 	}
 	else{
 		for (var i = 0; i < letter.length; i++) {
