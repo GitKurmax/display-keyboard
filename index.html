@@ -9,7 +9,7 @@
 	<!-- Реализуйте экранную клавиатуру. На ней должны быть кнопочки со всеми символами клавиатуры компьютера. Кликая мышкой по этим кнопочкам мы сможем вводить данные, например, при неработающей клавиатуре. Пусть эта экранная клавиатура будет привязана к какому-нибудь инпуту, то есть кликая по ней, мы будем вводить данные в этот инпут. -->
 	<div id="main-block">
 		<div id="input">
-			<textarea class="text" placeholder="Введите текст..." ></textarea>
+			<textarea class="text" placeholder="Введите текст..." autofocus></textarea>
 		</div>
 		<div id="keyboard">
 			<div class="button symb">
@@ -318,7 +318,7 @@
 				<span class="eng lang shift">RU</span>
 				<span class="eng lang">EN</span>
 			</div>
-			<div class="button all">
+			<div class="button all clearAll">
 				<span>очистить все</span>
 			</div>
 			<div class="button space"></div>
