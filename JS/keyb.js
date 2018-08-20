@@ -92,26 +92,52 @@ function capsLock (parent,classEvent,classLetters,classShift) {
 }
 
 function typeText(elem,button) {
+	var trigger;
+	if (button.classList.contains('audio-off')) {
+		button.classList.toggle('audio-off');
+		trigger = true;
+		addSound(true);
+	}else if(!button.classList.contains('audio-off')&&button.classList.contains('audio')) {
+		button.classList.toggle('audio-off');
+		trigger = false;
+		addSound(true);
+	}else if(!button.classList.contains('audio')){
+		var audioElem = keyb.querySelector('.audio');
+		if(audioElem.classList.contains('audio-off')){
+			trigger = false;
+			
+		}else{
+			trigger = true;
+			addSound(trigger);
+		}
+	}
+	console.log(trigger);
+	console.log(button.classList);
+
 	var letter = button.getElementsByTagName('span');
 	if(button.classList.contains('clearAll')){
 		elem.value = '';
+		addSound(trigger);
 	}else if(button.classList.contains('backspace')){
-		return holdBackspace(elem);
+		return holdBackspace(elem,trigger);
 	}else if(button.classList.contains('tab')){
-		return holdTabEnter('\t',elem);
+		return holdTabEnter('\t',elem,trigger);
 	}else if(button.classList.contains('enter')){
-		return 	holdTabEnter('\n',elem);
-	}
-	else{
+		return 	holdTabEnter('\n',elem,trigger);
+	}else if(button.classList.contains('select')){
+		elem.select();
+		addSound(trigger);
+	}else{
 		for (var i = 0; i < letter.length; i++) {
 			if(letter[i].classList.contains('ru')&&!letter[i].classList.contains('shift')){
-				return 	holdTabEnter(letter[i].innerHTML,elem);
+				return 	holdTabEnter(letter[i].innerHTML,elem,trigger);
 			}
 		}
 	}
+
 }
 
-function holdTabEnter(sign,input){
+function holdTabEnter(sign,input,trigger){
 	if(input.selectionEnd == input.value.length){
 		input.value += sign;
 	}else{
@@ -122,10 +148,14 @@ function holdTabEnter(sign,input){
 		input.value = res;
 		input.selectionEnd = firstEditedPart.length;
 	}
+
+	addSound(trigger);
+
 	return setTimeout(function(){
 		setInterval(function(){
 			if(input.selectionEnd == input.value.length){
 				input.value += sign;
+				addSound(trigger);
 			}else{
 				var firstPart = input.value.slice(0,input.selectionEnd);
 				var secondPart = input.value.slice(input.selectionEnd);
@@ -133,18 +163,15 @@ function holdTabEnter(sign,input){
 				var res = firstEditedPart + secondPart;	
 				input.value = res;
 				input.selectionEnd = firstEditedPart.length;
+				addSound(trigger);
 			}
 		},100);
 	},1000);	
 }
 
-function focus(elem){
-	elem.addEventListener('blur',function () {
-		elem.focus();
-	});
-}
 
-function holdBackspace(elem){
+
+function holdBackspace(elem,trigger){
 	if(elem.selectionEnd == elem.value.length){
 		elem.value = elem.value.slice(0,-1);
 	}else{
@@ -155,10 +182,12 @@ function holdBackspace(elem){
 		elem.value = res;
 		elem.selectionEnd = firstEditedPart.length;
 	}
+	addSound(trigger);
 	return setTimeout(function(){
 		setInterval(function(){
 			if(elem.selectionEnd == elem.value.length){
 				elem.value = elem.value.slice(0,-1);
+				addSound(trigger);
 			}else{
 				var firstPart = elem.value.slice(0,elem.selectionEnd);
 				var secondPart = elem.value.slice(elem.selectionEnd);
@@ -166,7 +195,24 @@ function holdBackspace(elem){
 				var res = firstEditedPart + secondPart;
 				elem.value = res;
 				elem.selectionEnd = firstEditedPart.length;
+				addSound(trigger);
 			}
 		},100);
 	},1000);	
+}
+
+function addSound(boolean){
+	var elem = keyb.querySelector('.audio');
+	var audio = new Audio(); 
+  	audio.src = './sounds/click.mp3';
+  	
+  	audio.autoplay = boolean;
+}
+
+function focus(elem){
+	elem.addEventListener('blur',function () {
+		var y = pageYOffset;
+		elem.focus();
+		window.scrollTo(0, y);
+	});
 }
