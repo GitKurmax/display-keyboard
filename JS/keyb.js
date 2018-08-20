@@ -96,27 +96,45 @@ function typeText(elem,button) {
 	if(button.classList.contains('clearAll')){
 		elem.value = '';
 	}else if(button.classList.contains('backspace')){
-		elem.value = elem.value.slice(0,-1);
+		return holdBackspace(elem);
 	}else if(button.classList.contains('tab')){
-		elem.value += '\t';
+		return holdTabEnter('\t',elem);
 	}else if(button.classList.contains('enter')){
-		elem.value += '\n';
+		return 	holdTabEnter('\n',elem);
 	}
 	else{
 		for (var i = 0; i < letter.length; i++) {
 			if(letter[i].classList.contains('ru')&&!letter[i].classList.contains('shift')){
-				elem.value += letter[i].innerHTML;
-				return 	hold(letter[i],elem);				
+				return 	holdTabEnter(letter[i].innerHTML,elem);
 			}
 		}
 	}
 }
 
-function hold(elem,input){
+function holdTabEnter(sign,input){
+	if(input.selectionEnd == input.value.length){
+		input.value += sign;
+	}else{
+		var firstPart = input.value.slice(0,input.selectionEnd);
+		var secondPart = input.value.slice(input.selectionEnd);
+		var firstEditedPart = firstPart + sign;
+		var res = firstEditedPart + secondPart;
+		input.value = res;
+		input.selectionEnd = firstEditedPart.length;
+	}
 	return setTimeout(function(){
 		setInterval(function(){
-		input.value += elem.innerHTML;
-	},100);
+			if(input.selectionEnd == input.value.length){
+				input.value += sign;
+			}else{
+				var firstPart = input.value.slice(0,input.selectionEnd);
+				var secondPart = input.value.slice(input.selectionEnd);
+				var firstEditedPart = firstPart + sign;
+				var res = firstEditedPart + secondPart;	
+				input.value = res;
+				input.selectionEnd = firstEditedPart.length;
+			}
+		},100);
 	},1000);	
 }
 
@@ -124,4 +142,31 @@ function focus(elem){
 	elem.addEventListener('blur',function () {
 		elem.focus();
 	});
+}
+
+function holdBackspace(elem){
+	if(elem.selectionEnd == elem.value.length){
+		elem.value = elem.value.slice(0,-1);
+	}else{
+		var firstPart = elem.value.slice(0,elem.selectionEnd);
+		var secondPart = elem.value.slice(elem.selectionEnd);
+		var firstEditedPart = firstPart.slice(0,elem.selectionEnd - 1);
+		var res = firstEditedPart + secondPart;
+		elem.value = res;
+		elem.selectionEnd = firstEditedPart.length;
+	}
+	return setTimeout(function(){
+		setInterval(function(){
+			if(elem.selectionEnd == elem.value.length){
+				elem.value = elem.value.slice(0,-1);
+			}else{
+				var firstPart = elem.value.slice(0,elem.selectionEnd);
+				var secondPart = elem.value.slice(elem.selectionEnd);
+				var firstEditedPart = firstPart.slice(0,elem.selectionEnd - 1);
+				var res = firstEditedPart + secondPart;
+				elem.value = res;
+				elem.selectionEnd = firstEditedPart.length;
+			}
+		},100);
+	},1000);	
 }
