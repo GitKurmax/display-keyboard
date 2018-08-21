@@ -111,9 +111,7 @@ function typeText(elem,button) {
 			addSound(trigger);
 		}
 	}
-	console.log(trigger);
-	console.log(button.classList);
-
+	
 	var letter = button.getElementsByTagName('span');
 	if(button.classList.contains('clearAll')){
 		elem.value = '';
@@ -126,6 +124,7 @@ function typeText(elem,button) {
 		return 	holdTabEnter('\n',elem,trigger);
 	}else if(button.classList.contains('select')){
 		elem.select();
+		alert(getSelection());
 		addSound(trigger);
 	}else{
 		for (var i = 0; i < letter.length; i++) {
@@ -137,52 +136,77 @@ function typeText(elem,button) {
 
 }
 
-function holdTabEnter(sign,input,trigger){
-	if(input.selectionEnd == input.value.length){
-		input.value += sign;
+function holdTabEnter(sign,elem,trigger){
+	if(elem.selectionEnd == elem.value.length){
+		if(elem.selectionEnd == 0){
+			elem.value = sign + elem.value;
+		}else if(elem.selectionStart == elem.selectionEnd){
+			elem.value += sign;
+		}else{
+			var start = elem.selectionStart;
+		var end = elem.selectionEnd;
+
+		elem.value = elem.value.slice(0, start - end) + sign;
+		}
 	}else{
-		var firstPart = input.value.slice(0,input.selectionEnd);
-		var secondPart = input.value.slice(input.selectionEnd);
+		var firstPart = elem.value.slice(0,elem.selectionStart);
+		var secondPart = elem.value.slice(elem.selectionEnd);
 		var firstEditedPart = firstPart + sign;
 		var res = firstEditedPart + secondPart;
-		input.value = res;
-		input.selectionEnd = firstEditedPart.length;
+		elem.value = res;
+		elem.selectionEnd = firstEditedPart.length;
 	}
 
 	addSound(trigger);
 
 	return setTimeout(function(){
 		setInterval(function(){
-			if(input.selectionEnd == input.value.length){
-				input.value += sign;
+			if(elem.selectionEnd == elem.value.length){
+				elem.value += sign;
 				addSound(trigger);
 			}else{
-				var firstPart = input.value.slice(0,input.selectionEnd);
-				var secondPart = input.value.slice(input.selectionEnd);
+				var firstPart = elem.value.slice(0,elem.selectionEnd);
+				var secondPart = elem.value.slice(elem.selectionEnd);
 				var firstEditedPart = firstPart + sign;
 				var res = firstEditedPart + secondPart;	
-				input.value = res;
-				input.selectionEnd = firstEditedPart.length;
+				elem.value = res;
+				elem.selectionEnd = firstEditedPart.length;
 				addSound(trigger);
 			}
 		},100);
 	},1000);	
 }
 
-
-
 function holdBackspace(elem,trigger){
 	if(elem.selectionEnd == elem.value.length){
-		elem.value = elem.value.slice(0,-1);
+		var start = elem.selectionStart;
+		var end = elem.selectionEnd;
+		if(start == end){
+			elem.value = elem.value.slice(0,-1);
+		}else{
+			elem.value = elem.value.slice(0,start - end);
+		}
+		
 	}else{
-		var firstPart = elem.value.slice(0,elem.selectionEnd);
-		var secondPart = elem.value.slice(elem.selectionEnd);
-		var firstEditedPart = firstPart.slice(0,elem.selectionEnd - 1);
-		var res = firstEditedPart + secondPart;
-		elem.value = res;
-		elem.selectionEnd = firstEditedPart.length;
+		var start = elem.selectionStart;
+		var end = elem.selectionEnd;
+		var firstPart = elem.value.slice(0,elem.start);
+		var secondPart = elem.value.slice(end);
+		if (start == end) {
+			var firstEditedPart = firstPart.slice(0,elem.selectionEnd - 1);
+			var res = firstEditedPart + secondPart;
+			elem.value = res;
+			elem.selectionEnd = firstEditedPart.length;
+		}else{
+			var firstEditedPart = firstPart.slice(0,start);
+			var res = firstEditedPart + secondPart;
+			elem.value = res;
+			elem.selectionEnd = firstEditedPart.length;
+		}
 	}
+
 	addSound(trigger);
+
 	return setTimeout(function(){
 		setInterval(function(){
 			if(elem.selectionEnd == elem.value.length){
