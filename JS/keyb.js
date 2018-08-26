@@ -12,6 +12,9 @@ function pushKeyStyle(parent){
 	var intervalId;
 	
 	parent.addEventListener('mousedown',function func() {
+		if(event.target.id == 'keyboard'){
+			return null;
+		}
 		if(event.target.classList.contains('button')){
 			target = event.target;
 		}else if(event.target.closest('div').classList.contains('button')){
@@ -97,7 +100,7 @@ function typeText(elem,button) {
 		button.classList.toggle('audio-off');
 		trigger = true;
 		addSound(true);
-	}else if(!button.classList.contains('audio-off')&&button.classList.contains('audio')) {
+	}else if(button.classList.contains('audio')) {
 		button.classList.toggle('audio-off');
 		trigger = false;
 		addSound(true);
@@ -105,7 +108,6 @@ function typeText(elem,button) {
 		var audioElem = keyb.querySelector('.audio');
 		if(audioElem.classList.contains('audio-off')){
 			trigger = false;
-			
 		}else{
 			trigger = true;
 			addSound(trigger);
@@ -113,10 +115,11 @@ function typeText(elem,button) {
 	}
 	
 	var letter = button.getElementsByTagName('span');
+
 	if(button.classList.contains('clearAll')){
 		elem.value = '';
 		addSound(trigger);
-	}else if(button.classList.contains('backspace')){
+	}else if(button.classList.contains('backspace')&&!button.classList.contains('language')){
 		return holdBackspace(elem,trigger);
 	}else if(button.classList.contains('tab')){
 		return holdTabEnter('\t',elem,trigger);
@@ -124,33 +127,31 @@ function typeText(elem,button) {
 		return 	holdTabEnter('\n',elem,trigger);
 	}else if(button.classList.contains('select')){
 		elem.select();
-		alert(getSelection());
 		addSound(trigger);
-	}else{
+	}else if(!button.classList.contains('language')){
 		for (var i = 0; i < letter.length; i++) {
 			if(letter[i].classList.contains('ru')&&!letter[i].classList.contains('shift')){
 				return 	holdTabEnter(letter[i].innerHTML,elem,trigger);
 			}
 		}
 	}
-
 }
 
 function holdTabEnter(sign,elem,trigger){
-	if(elem.selectionEnd == elem.value.length){
-		if(elem.selectionEnd == 0){
+	var start = elem.selectionStart;
+	var end = elem.selectionEnd;
+
+	if(end == elem.value.length){
+		if(end == 0){
 			elem.value = sign + elem.value;
-		}else if(elem.selectionStart == elem.selectionEnd){
+		}else if(start == end){
 			elem.value += sign;
 		}else{
-			var start = elem.selectionStart;
-		var end = elem.selectionEnd;
-
-		elem.value = elem.value.slice(0, start - end) + sign;
+			elem.value = elem.value.slice(0, start - end) + sign;
 		}
 	}else{
-		var firstPart = elem.value.slice(0,elem.selectionStart);
-		var secondPart = elem.value.slice(elem.selectionEnd);
+		var firstPart = elem.value.slice(0,start);
+		var secondPart = elem.value.slice(end);
 		var firstEditedPart = firstPart + sign;
 		var res = firstEditedPart + secondPart;
 		elem.value = res;
@@ -161,7 +162,7 @@ function holdTabEnter(sign,elem,trigger){
 
 	return setTimeout(function(){
 		setInterval(function(){
-			if(elem.selectionEnd == elem.value.length){
+			if(end == elem.value.length){
 				elem.value += sign;
 				addSound(trigger);
 			}else{
@@ -178,22 +179,21 @@ function holdTabEnter(sign,elem,trigger){
 }
 
 function holdBackspace(elem,trigger){
-	if(elem.selectionEnd == elem.value.length){
-		var start = elem.selectionStart;
-		var end = elem.selectionEnd;
+	var start = elem.selectionStart;
+	var end = elem.selectionEnd;
+
+	if(end == elem.value.length){
 		if(start == end){
 			elem.value = elem.value.slice(0,-1);
 		}else{
 			elem.value = elem.value.slice(0,start - end);
 		}
-		
 	}else{
-		var start = elem.selectionStart;
-		var end = elem.selectionEnd;
-		var firstPart = elem.value.slice(0,elem.start);
+		var firstPart = elem.value.slice(0,start);
 		var secondPart = elem.value.slice(end);
+		
 		if (start == end) {
-			var firstEditedPart = firstPart.slice(0,elem.selectionEnd - 1);
+			var firstEditedPart = firstPart.slice(0,end - 1);
 			var res = firstEditedPart + secondPart;
 			elem.value = res;
 			elem.selectionEnd = firstEditedPart.length;
@@ -209,7 +209,7 @@ function holdBackspace(elem,trigger){
 
 	return setTimeout(function(){
 		setInterval(function(){
-			if(elem.selectionEnd == elem.value.length){
+			if(end == elem.value.length){
 				elem.value = elem.value.slice(0,-1);
 				addSound(trigger);
 			}else{
@@ -226,7 +226,6 @@ function holdBackspace(elem,trigger){
 }
 
 function addSound(boolean){
-	var elem = keyb.querySelector('.audio');
 	var audio = new Audio(); 
   	audio.src = './sounds/click.mp3';
   	
