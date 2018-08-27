@@ -138,6 +138,19 @@ function typeText(elem,button) {
 }
 
 function holdTabEnter(sign,elem,trigger){
+	if(sign == '&amp;'){
+	var amp = String.fromCharCode(38);
+	sign = amp;
+}	
+	if(sign == '&lt;'){
+	var amp = String.fromCharCode(60);
+	sign = amp;
+}
+	if(sign == '&gt;'){
+	var amp = String.fromCharCode(62);
+	sign = amp;
+}
+
 	var start = elem.selectionStart;
 	var end = elem.selectionEnd;
 
